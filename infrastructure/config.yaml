@@ -1,0 +1,15 @@
+# Configuration for JupyterHub
+proxy:
+  secretToken: "a3f5029938492849284928492849284928492849284928492849284928492849"
+  service:
+    type: NodePort
+    nodePorts:
+      http: 30080
+
+singleuser:
+  cpu:
+    limit: 1
+    guarantee: 0.05
+  memory:
+    limit: 1G
+    guarantee: 512M
