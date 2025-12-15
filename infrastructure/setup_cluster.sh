@@ -15,6 +15,17 @@ if ! docker info &> /dev/null; then
     exit 1
 fi
 
+# Determine project root (assuming script is in infrastructure/)
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+SHARED_DATA_DIR="$PROJECT_ROOT/shared_data"
+
+# Create shared directory if it doesn't exist
+if [ ! -d "$SHARED_DATA_DIR" ]; then
+    echo "Creating shared data directory at $SHARED_DATA_DIR"
+    mkdir -p "$SHARED_DATA_DIR"
+fi
+
 # Create cluster if it doesn't exist
 if kind get clusters | grep -q "^$CLUSTER_NAME$"; then
     echo "Cluster $CLUSTER_NAME already exists."
@@ -25,6 +36,9 @@ kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
 - role: control-plane
+  extraMounts:
+  - hostPath: $SHARED_DATA_DIR
+    containerPath: /data/shared
   extraPortMappings:
   - containerPort: 30080
     hostPort: 8080

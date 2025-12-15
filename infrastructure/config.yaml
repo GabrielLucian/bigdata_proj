@@ -13,3 +13,21 @@ singleuser:
   memory:
     limit: 1G
     guarantee: 512M
+  storage:
+    extraVolumes:
+      - name: shared-data
+        hostPath:
+          path: /data/shared
+    extraVolumeMounts:
+      - name: shared-data
+        mountPath: /home/jovyan/shared
+        readOnly: true
+  storage:
+    extraVolumes:
+      - name: shared-data
+        hostPath:
+          path: /data/shared
+    extraVolumeMounts:
+      - name: shared-data
+        mountPath: /home/jovyan/shared
+        readOnly: true
