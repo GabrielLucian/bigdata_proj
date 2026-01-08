@@ -1,6 +1,5 @@
-# Configuration for JupyterHub
 proxy:
-  secretToken: "a3f5029938492849284928492849284928492849284928492849284928492849"
+  secretToken: "6c0cd88ef4beffcbcbd5c5d054649b750be21d8984457c432f054824fde6dbbe"
   service:
     type: NodePort
     nodePorts:
@@ -14,20 +13,4 @@ singleuser:
     limit: 1G
     guarantee: 512M
   storage:
-    extraVolumes:
-      - name: shared-data
-        hostPath:
-          path: /data/shared
-    extraVolumeMounts:
-      - name: shared-data
-        mountPath: /home/jovyan/shared
-        readOnly: true
-  storage:
-    extraVolumes:
-      - name: shared-data
-        hostPath:
-          path: /data/shared
-    extraVolumeMounts:
-      - name: shared-data
-        mountPath: /home/jovyan/shared
-        readOnly: true
+    capacity: 5G
