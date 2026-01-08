@@ -4,13 +4,7 @@ set -e
 NAMESPACE="jhub"
 RELEASE_NAME="jupyterhub"
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-CONFIG_FILE="$SCRIPT_DIR/config.yaml"
-
-# Check if helm is installed
-if ! command -v helm &> /dev/null; then
-    echo "helm is not installed. Please install helm first."
-    exit 1
-fi
+CONFIG_FILE="$SCRIPT_DIR/values.yaml"
 
 # Add JupyterHub helm repo
 echo "Adding JupyterHub Helm repository..."

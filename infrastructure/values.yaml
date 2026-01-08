@@ -1,0 +1,10 @@
+singleuser:
+  storage:
+    capacity: 2Gi
+    dynamic:
+      storageClass: standard
+proxy:
+  service:
+    type: NodePort
+    nodePorts:
+      http: 30080
